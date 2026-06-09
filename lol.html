@@ -1,0 +1,226 @@
+﻿<!DOCTYPE html>
+<html lang="zh-TW">
+<head><script type='text/javascript' nonce='Psa4gN97095Ybj6ml9cNOw==' src='https://contribution.usercontent.google.com/UTZTYB2l6CXSbkLOmFT3gsI3ejpkUJwRRc1-OOd90LXK5dN8zff3a89ePQPxgXl4QmJF4Lf8RgzdCb6Rg-kOqcDhuSTvO5Pk1MMJBoyRwx1powhobouimJltIhRPL-kiKljbUxlsLjKbavG4nvCpuOk7UiCvbP6wD0uMUd8ukvKmRsePq6aGoWdrNBM8SkcUpbSIRDaTvzSUiRntBr_eQjihYU0-OCTesKCA9vqoDg9DEe9mJB1cT9nmHTmz_Sod7i0mSg_MjnfcScZzgaRzGJpgLOPIUObLb6j25b0QDFt-Q-_9QDlYAbAXUN3vu-Me55cUm2XqRNC3VGB3kcHXljJ4z0bGXWmV8wiWRzfVmbSszcEaZk1JxHkQqP91yQD3fuRSF96M5W0ek-_vbPS-FteJ3KRuxtSRmXnOVB-vCTXoNSxxTO5ho5MUk0pFyChzi5A-OATgO9ri_d5teRqgQJGWXF1LoaxgNJPeVXMhtvEoSEdy5qkh_sVi_KAeS1v1GKFthiCAdmS53p9i6fb1lpKl0TxEb5V_ZlMcIuLi-NM7pxN98Wq7SwR7nPcJvHi_IdnGI38do3PLKk304Z8kDXNKCsXMg5P7tmwLwXhSn8EZ7OfOnTIXynw6CBk8J1tGl0k04BkMQVMq2Z0KNMsdAO5ieXDICRKYgSj5EN6QvwYA_3_IwXlBEkiNncZ-Zc1Oe8xfDR2BB0mZ9cSzhtWKur88OiSUg6yHmcp6hJ8xs-w58gDF20x_CA'></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>105-113學年度台灣學生出國交流前十大熱門國家</title>
+    <!-- 引入 ECharts -->
+    <script src="https://cdn.jsdelivr.net/npm/echarts@5.5.0/dist/echarts.min.js"></script>
+    <style>
+        body {
+            font-family: 'Helvetica Neue', Arial, 'Microsoft JhengHei', sans-serif;
+            background-color: #f8f9fa;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        h2 {
+            color: #333;
+            margin-bottom: 10px;
+        }
+        #chart-container {
+            width: 100%;
+            max-width: 1000px;
+            height: 600px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            padding: 20px;
+        }
+        .controls {
+            margin-top: 20px;
+            display: flex;
+            gap: 15px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            font-weight: bold;
+            color: white;
+            background-color: #007bff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        button:active {
+            background-color: #004085;
+        }
+        #reset-btn {
+            background-color: #6c757d;
+        }
+        #reset-btn:hover {
+            background-color: #5a6268;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>105-113學年度台灣學生出國交流前10大熱門國家/地區</h2>
+    
+    <div id="chart-container"></div>
+    
+    <div class="controls">
+        <button id="play-btn">播放 / 暫停</button>
+        <button id="reset-btn">回到原點</button>
+    </div>
+
+    <script>
+        var chartDom = document.getElementById('chart-container');
+        var myChart = echarts.init(chartDom);
+        var option;
+
+        const rawData = [["Country", "Students", "Year"], ["德意志聯邦共和國", 853, 105], ["大陸地區", 2453, 105], ["美國", 1585, 105], ["日本", 2744, 105], ["大韓民國(南韓)", 1180, 105], ["新加坡共和國", 151, 105], ["荷蘭王國", 265, 105], ["英國", 199, 105], ["瑞典王國", 164, 105], ["加拿大", 308, 105], ["法國", 650, 105], ["西班牙王國", 444, 105], ["泰國", 198, 105], ["澳大利亞", 175, 105], ["捷克共和國", 244, 105], ["德意志聯邦共和國", 972, 106], ["大陸地區", 3446, 106], ["美國", 1491, 106], ["日本", 3135, 106], ["大韓民國(南韓)", 1431, 106], ["新加坡共和國", 265, 106], ["荷蘭王國", 265, 106], ["英國", 260, 106], ["瑞典王國", 166, 106], ["加拿大", 345, 106], ["法國", 693, 106], ["西班牙王國", 443, 106], ["泰國", 350, 106], ["澳大利亞", 249, 106], ["捷克共和國", 243, 106], ["德意志聯邦共和國", 1118, 107], ["大陸地區", 3791, 107], ["美國", 1290, 107], ["日本", 2934, 107], ["大韓民國(南韓)", 1539, 107], ["新加坡共和國", 270, 107], ["荷蘭王國", 289, 107], ["英國", 194, 107], ["瑞典王國", 166, 107], ["加拿大", 298, 107], ["法國", 694, 107], ["西班牙王國", 477, 107], ["泰國", 376, 107], ["澳大利亞", 240, 107], ["捷克共和國", 296, 107], ["德意志聯邦共和國", 905, 108], ["大陸地區", 1630, 108], ["美國", 938, 108], ["日本", 2148, 108], ["大韓民國(南韓)", 833, 108], ["新加坡共和國", 162, 108], ["荷蘭王國", 255, 108], ["英國", 180, 108], ["瑞典王國", 149, 108], ["加拿大", 222, 108], ["法國", 542, 108], ["西班牙王國", 364, 108], ["泰國", 157, 108], ["澳大利亞", 192, 108], ["捷克共和國", 244, 108], ["德意志聯邦共和國", 328, 109], ["大陸地區", 163, 109], ["美國", 90, 109], ["日本", 363, 109], ["大韓民國(南韓)", 329, 109], ["新加坡共和國", 21, 109], ["荷蘭王國", 42, 109], ["英國", 25, 109], ["瑞典王國", 32, 109], ["加拿大", 8, 109], ["法國", 114, 109], ["西班牙王國", 32, 109], ["泰國", 24, 109], ["澳大利亞", 26, 109], ["捷克共和國", 64, 109], ["德意志聯邦共和國", 477, 110], ["大陸地區", 453, 110], ["美國", 403, 110], ["日本", 586, 110], ["大韓民國(南韓)", 506, 110], ["新加坡共和國", 66, 110], ["荷蘭王國", 154, 110], ["英國", 86, 110], ["瑞典王國", 101, 110], ["加拿大", 80, 110], ["法國", 332, 110], ["西班牙王國", 111, 110], ["泰國", 21, 110], ["澳大利亞", 50, 110], ["捷克共和國", 121, 110], ["德意志聯邦共和國", 857, 111], ["大陸地區", 504, 111], ["美國", 804, 111], ["日本", 2275, 111], ["大韓民國(南韓)", 898, 111], ["新加坡共和國", 107, 111], ["荷蘭王國", 248, 111], ["英國", 187, 111], ["瑞典王國", 117, 111], ["加拿大", 166, 111], ["法國", 618, 111], ["西班牙王國", 304, 111], ["泰國", 87, 111], ["澳大利亞", 169, 111], ["捷克共和國", 233, 111], ["德意志聯邦共和國", 976, 112], ["大陸地區", 1125, 112], ["美國", 898, 112], ["日本", 2815, 112], ["大韓民國(南韓)", 1077, 112], ["新加坡共和國", 143, 112], ["荷蘭王國", 285, 112], ["英國", 231, 112], ["瑞典王國", 130, 112], ["加拿大", 174, 112], ["法國", 682, 112], ["西班牙王國", 304, 112], ["泰國", 111, 112], ["澳大利亞", 289, 112], ["捷克共和國", 315, 112], ["德意志聯邦共和國", 1011, 113], ["大陸地區", 1219, 113], ["美國", 666, 113], ["日本", 2771, 113], ["大韓民國(南韓)", 1122, 113], ["新加坡共和國", 126, 113], ["荷蘭王國", 304, 113], ["英國", 212, 113], ["瑞典王國", 132, 113], ["加拿大", 158, 113], ["法國", 766, 113], ["西班牙王國", 283, 113], ["泰國", 147, 113], ["澳大利亞", 171, 113], ["捷克共和國", 406, 113]];
+        const years = [105, 106, 107, 108, 109, 110, 111, 112, 113];
+        
+        let currentYearIndex = 0;
+        let updateInterval;
+        let isPlaying = false;
+
+        // Configuration for colors
+        const colors = [
+            '#5470c6', '#91cc75', '#fac858', '#ee6666', '#73c0de', 
+            '#3ba272', '#fc8452', '#9a60b4', '#ea7ccc', '#1f77b4',
+            '#ff7f0e', '#2ca02c', '#d62728', '#9467bd', '#8c564b'
+        ];
+
+        option = {
+            dataset: [
+                {
+                    id: 'dataset_raw',
+                    source: rawData
+                }
+            ],
+            grid: {
+                top: 40,
+                bottom: 30,
+                left: 120,
+                right: 50
+            },
+            xAxis: {
+                max: 'dataMax',
+                axisLabel: {
+                    formatter: function (n) {
+                        return Math.round(n) + ' 人';
+                    }
+                }
+            },
+            yAxis: {
+                type: 'category',
+                inverse: true,
+                max: 9, // Top 10
+                axisLabel: {
+                    show: true,
+                    fontSize: 14,
+                    fontWeight: 'bold'
+                },
+                animationDuration: 300,
+                animationDurationUpdate: 300
+            },
+            series: [
+                {
+                    realtimeSort: true,
+                    seriesLayoutBy: 'column',
+                    type: 'bar',
+                    itemStyle: {
+                        color: function (param) {
+                            let hash = 0;
+                            let str = param.value[0];
+                            for (let i = 0; i < str.length; i++) {
+                                hash = str.charCodeAt(i) + ((hash << 5) - hash);
+                            }
+                            return colors[Math.abs(hash) % colors.length];
+                        }
+                    },
+                    encode: {
+                        x: 1, 
+                        y: 0  
+                    },
+                    label: {
+                        show: true,
+                        precision: 0,
+                        position: 'right',
+                        valueAnimation: true,
+                        fontFamily: 'monospace',
+                        fontSize: 14
+                    }
+                }
+            ],
+            animationDuration: 1000,
+            animationDurationUpdate: 1000,
+            animationEasing: 'linear',
+            animationEasingUpdate: 'linear',
+            graphic: {
+                elements: [
+                    {
+                        type: 'text',
+                        right: 60,
+                        bottom: 60,
+                        style: {
+                            text: years[0] + ' 學年度',
+                            font: 'bolder 80px monospace',
+                            fill: 'rgba(100, 100, 100, 0.25)'
+                        },
+                        z: 100
+                    }
+                ]
+            }
+        };
+
+        function updateYear(year) {
+            let currentData = [['Country', 'Students', 'Year']];
+            for (let i = 1; i < rawData.length; i++) {
+                if (rawData[i][2] === year) {
+                    currentData.push(rawData[i]);
+                }
+            }
+            option.dataset[0].source = currentData;
+            option.graphic.elements[0].style.text = year + ' 學年度';
+            myChart.setOption(option);
+        }
+
+        myChart.setOption(option);
+        updateYear(years[currentYearIndex]);
+
+        function step() {
+            currentYearIndex++;
+            if (currentYearIndex >= years.length) {
+                clearInterval(updateInterval);
+                isPlaying = false;
+                return;
+            }
+            updateYear(years[currentYearIndex]);
+        }
+
+        document.getElementById('play-btn').addEventListener('click', function() {
+            if (isPlaying) {
+                clearInterval(updateInterval);
+                isPlaying = false;
+            } else {
+                if (currentYearIndex >= years.length - 1) {
+                    currentYearIndex = 0;
+                }
+                isPlaying = true;
+                step();
+                updateInterval = setInterval(step, 1500);
+            }
+        });
+
+        document.getElementById('reset-btn').addEventListener('click', function() {
+            clearInterval(updateInterval);
+            isPlaying = false;
+            currentYearIndex = 0;
+            updateYear(years[currentYearIndex]);
+        });
+
+        window.addEventListener('resize', function() {
+            myChart.resize();
+        });
+    </script>
+</body>
+</html>
